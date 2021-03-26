@@ -1,4 +1,4 @@
-<?php
+ <?php
 require_once dirname(__FILE__)."/../config.php";
 
 class BaseDao {
@@ -17,7 +17,6 @@ class BaseDao {
       throw $e;
     }
   }
-
   protected function insert($table, $entity){
     $query = "INSERT INTO ${table} (";
     foreach ($entity as $column => $value) {
@@ -37,19 +36,27 @@ class BaseDao {
     return $entity;
   }
 
-  protected function query($query, $params){
+  protected function query($query, $params){ //executing sql statements with any kind of parametars
     $stmt = $this->connection->prepare($query);
     $stmt->execute($params);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  protected function query_unique($query, $params){
+  protected function query_unique($query, $params){ //to get first element, not a whole array
     $results = $this->query($query, $params);
-    return reset($results);
+    return reset($results); //function that gives first element of array
   }
 
   public function get_by_id($id){
       return $this->query_unique("SELECT * FROM ".$this->table." WHERE id = :id", ["id" => $id]);
     }
+
+   
+
+    public function get_user_by_email($email){
+      return $this->query_unique("SELECT * FROM users WHERE email = :email", ["email" => $email]);
+    }
+
+
 
 }
