@@ -13,14 +13,6 @@ class UserDao extends BaseDao {
     return $this->query_unique("SELECT * FROM users WHERE email = :email", ["email" => $email]);
   }
 
-  public function update_user_by_id($id, $user){
-
-  }
-
-  public function update_user_by_email($email, $user){
-    $this->update("users", $email, $user, "email");
-  }
-
   public function add_user($user){
     $insert = "";
     $sql ="INSERT INTO users (first_name, last_name, email, password, id) VALUES (:first_name, :last_name, :email, :password, :id)";
@@ -30,6 +22,13 @@ class UserDao extends BaseDao {
     return $user;
   }
 
+  public function update_user($id, $user){
+    $insert = "";
+    $sql ="UPDATE users SET first_name = :first_name, last_name = :last_name, email =:email, password = :password, id = :id) WHERE id = :id";
+    $stmt = $this -> connection -> prepare($sql);
+    $user['id'] = $id;
+    $stmt -> execute($user);
+  }
 
 
 }
