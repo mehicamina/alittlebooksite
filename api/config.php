@@ -1,10 +1,10 @@
 <?php
 
 class Config {
-  const DB_HOST = "localhost:3307";
+  const DB_HOST = "localhost";
   const DB_USERNAME = "root";
-  const DB_PASSWORD ="9qKo1t77";
-  const DB_SCHEME = "sys";
+  const DB_PASSWORD ="rootroot";
+  const DB_SCHEME = "alittlebooksite";
 }
 
 ?>
