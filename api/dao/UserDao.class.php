@@ -2,8 +2,8 @@
 
 require_once dirname(__FILE__)."/BaseDao.class.php";
 
-class UserDao extends BaseDao()
-{
+class UserDao extends BaseDao {
+
   protected function get_user_by_id($user)
   {
     return $this->query_unique("SELECT * FROM users WHERE id = :id", ["id" => $id]);

@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(_FILE_). "/dao/UserDao.class.php";
+require_once dirname(_FILE_)."/UserDao.class.php";
 
 $user_dao = new UserDao();
 

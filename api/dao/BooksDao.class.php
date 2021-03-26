@@ -2,7 +2,7 @@
 
 require_once dirname(__FILE__)."/BaseDao.class.php";
 
-class BooksDao extends BaseDao()
+class BooksDao extends BaseDao
 {
 
   protected function get_books_by_id($id)
