@@ -6,11 +6,11 @@ class BaseDao {
 
   private $table;
 
-  public function __construct(){
+  public function __construct($table){
+    $this->table = $table;
     try {
       $this->connection = new PDO("mysql:host=".Config::DB_HOST.";dbname=".Config::DB_SCHEME, Config::DB_USERNAME, Config::DB_PASSWORD);
       $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      echo "RADI ";
       }
     catch(PDOException $e) {
     //  echo "Connection failed!";
@@ -36,13 +36,13 @@ class BaseDao {
     return $entity;
   }
 
-  protected function query($query, $params){ //executing sql statements with any kind of parametars
+  public function query($query, $params){ //executing sql statements with any kind of parametars
     $stmt = $this->connection->prepare($query);
     $stmt->execute($params);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  protected function query_unique($query, $params){ //to get first element, not a whole array
+  public function query_unique($query, $params){ //to get first element, not a whole array
     $results = $this->query($query, $params);
     return reset($results); //function that gives first element of array
   }

@@ -1,10 +1,17 @@
 <?php
 
-require_once dirname(__FILE__)."/UserDao.class.php";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require_once dirname(__FILE__)."/api/dao/UserDao.class.php";
+require_once dirname(__FILE__)."/api/dao/BaseDao.class.php";
 
 $user_dao = new UserDao();
 
-$user = $user_dao->get_user_by_email("amina.mehic@gmail.com");
+//$user = $user_dao->get_user_byemail("amina@mehic.xd");
+//$user = $user_dao->get_user_by_id("1");
+
 
 print_r($user);
 
