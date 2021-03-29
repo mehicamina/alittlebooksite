@@ -18,7 +18,7 @@ class UserDao extends BaseDao {
     return $this->get_user_by_email($email);
   }
 
-  public function add_user($user){
+ public function add_user($user){
     $insert = "";
     $sql ="INSERT INTO users (first_name, last_name, email, password, id) VALUES (:first_name, :last_name, :email, :password, :id)";
     $stmt = $this -> connection -> prepare($sql);
@@ -33,12 +33,11 @@ class UserDao extends BaseDao {
     $stmt = $this -> connection -> prepare($sql);
     $user['id'] = $id;
     $stmt -> execute($user);
-  }
-
+  
 
 }
 
-
+}
 
 
  ?>

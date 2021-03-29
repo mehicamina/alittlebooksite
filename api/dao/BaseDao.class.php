@@ -37,9 +37,11 @@ class BaseDao {
   }
 
   public function query($query, $params){ //executing sql statements with any kind of parametars
+    
     $stmt = $this->connection->prepare($query);
     $stmt->execute($params);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  
   }
 
   public function query_unique($query, $params){ //to get first element, not a whole array
