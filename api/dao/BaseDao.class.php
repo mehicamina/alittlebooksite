@@ -59,6 +59,23 @@ class BaseDao {
       return $this->query_unique("SELECT * FROM users WHERE email = :email", ["email" => $email]);
     }
 
+    protected function execute_update($table, $id, $entity, $id_column = "id"){
+      $query = "UPDATE ${table} SET ";
+      foreach($entity as $name => $value){
+        $query .= $name ."= :". $name. ", ";
+      }
+      $query = substr($query, 0, -2);
+      $query .= " WHERE ${id_column} = :id";
+  
+      $stmt= $this->connection->prepare($query);
+      $entity['id'] = $id;
+      $stmt->execute($entity);
+    }
+
+    public function update($id, $entity){
+      $this->execute_update($this->table, $id, $entity);
+    }
+
 
 
 }

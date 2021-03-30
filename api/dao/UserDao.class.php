@@ -14,9 +14,13 @@ class UserDao extends BaseDao {
     return $this->query_unique("SELECT * FROM users WHERE id = :id", ["id" => $id]);
   }
 
-  public function get_user_byemail($email){
+  public function get_user_by_email($email){
     return $this->get_user_by_email($email);
   }
+
+  public function update_account($id, $user) {
+    $this->update("accounts", $id, $user);
+}
 
  public function add_user($user){
     $insert = "";
@@ -27,7 +31,7 @@ class UserDao extends BaseDao {
     return $user;
   }
 
-  public function update_user($id, $user){
+  /*public function update_user($id, $user){
     $insert = "";
     $sql ="UPDATE users SET first_name = :first_name, last_name = :last_name, email =:email, password = :password, id = :id) WHERE id = :id";
     $stmt = $this -> connection -> prepare($sql);
@@ -35,7 +39,7 @@ class UserDao extends BaseDao {
     $stmt -> execute($user);
   
 
-}
+}*/
 
 }
 

@@ -8,12 +8,12 @@ require_once dirname(__FILE__)."/dao/UserDao.class.php";
 
 $user_dao = new UserDao();
 
-$user = $user_dao->get_user_by_id(1);
-
+$user = $user_dao->get_user_by_id(2);
 print_r($user);
+/*print_r($user);
 $user1 = [
     "first_name" => "Emina",
-    "last_name" => "Mehic",
+    "last_name" => "Mehic Sero",
     "email" => " emi@mehic.ba",
     "password" => "1234",
     "id" => 2
@@ -27,8 +27,8 @@ foreach($user as $name => $value){
 
 
 //$user = $user_dao->add_user($user1);
-//$user = $user_dao->update_user(2,$user1);
-//print_r($user);
+//$user = $user_dao->update(2,$user1);
+//print_r($user);*/
 
 
  ?>
