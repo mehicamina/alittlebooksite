@@ -14,14 +14,21 @@ print_r($user);
 $user1 = [
     "first_name" => "Emina",
     "last_name" => "Mehic",
-    "email" => " emi@gmail.com",
+    "email" => " emi@mehic.ba",
     "password" => "1234",
     "id" => 2
 ];
 
-$user = $user_dao->add_user($user1);
+foreach($user as $name => $value){
+    echo $name. "<br />";
+    print $value. "<br />";
 
-print_r($user1);
+}
+
+
+//$user = $user_dao->add_user($user1);
+//$user = $user_dao->update_user(2,$user1);
+//print_r($user);
 
 
  ?>
