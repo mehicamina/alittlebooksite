@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 
 require_once dirname(__FILE__)."/dao/BaseDao.class.php";
 require_once dirname(__FILE__)."/dao/UserDao.class.php";
+require_once dirname(__FILE__)."/dao/BookDao.class.php";
 
 $user_dao = new UserDao();
 
@@ -29,6 +30,14 @@ foreach($user as $name => $value){
 //$user = $user_dao->add_user($user1);
 //$user = $user_dao->update(2,$user1);
 //print_r($user);*/
+$dao = new BookDao();
 
-
+$books = $dao->get_all_books();
+$books = $dao->get_books_by_id(1);
+$dao->update_book(1,["name" => "Aleff"]);
+print_r($books);
+$dao->add_book([
+    "name" => "Veronica Decides To Die",
+    
+])
  ?>
