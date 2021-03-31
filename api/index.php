@@ -7,10 +7,10 @@ require_once dirname(__FILE__)."/dao/BaseDao.class.php";
 require_once dirname(__FILE__)."/dao/UserDao.class.php";
 require_once dirname(__FILE__)."/dao/BookDao.class.php";
 
-$user_dao = new UserDao();
+//$user_dao = new UserDao();
 
-$user = $user_dao->get_user_by_id(2);
-print_r($user);
+//$user = $user_dao->get_user_by_id(2);
+//print_r($user);
 /*print_r($user);
 $user1 = [
     "first_name" => "Emina",
@@ -31,13 +31,18 @@ foreach($user as $name => $value){
 //$user = $user_dao->update(2,$user1);
 //print_r($user);*/
 $dao = new BookDao();
+//$knjige = $dao->get_all_books();
+//$books = $dao->get_books_by_id(1);
+//print_r($books);
 
-$books = $dao->get_all_books();
-$books = $dao->get_books_by_id(1);
-$dao->update_book(1,["name" => "Aleff"]);
-print_r($books);
-$dao->add_book([
-    "name" => "Veronica Decides To Die",
+//test to insert acc
+$novi_insert=[
+    "id"=>"2",
+    "title"=>"Veronica Decides to Die"
     
-])
+];
+$imetabele="books";
+
+$zahanju = $dao->add_book($imetabele, $novi_insert);
+
  ?>

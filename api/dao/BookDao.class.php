@@ -5,6 +5,11 @@ require_once dirname(__FILE__)."/BaseDao.class.php";
 class BookDao extends BaseDao
 {
 
+  public function __construct()
+    {
+        parent::__construct("books");
+    }
+
   public function add_book($book){
     return $this->insert("books", $book);
   }
@@ -26,7 +31,7 @@ class BookDao extends BaseDao
   }
 
   public function get_all_books(){
-    return $this->query("SELECT * FTOM books", []);
+    return $this->query("SELECT * FROM books", []);
   }
 }
 
