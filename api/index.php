@@ -36,13 +36,14 @@ $dao = new BookDao();
 //print_r($books);
 
 //test to insert acc
-$novi_insert=[
-    "id"=>"2",
-    "title"=>"Veronica Decides to Die"
+$new_insert=[
+    "id"=>"11",
+    "title"=>"The Monk Who Sold His Ferrari"
     
 ];
 $imetabele="books";
 
-$zahanju = $dao->add_book($imetabele, $novi_insert);
+$insert_book = $dao->add_book($new_insert);
+print_r($dao);
 
  ?>
