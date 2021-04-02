@@ -18,8 +18,8 @@ class UserDao extends BaseDao {
     return $this->get_user_by_email($email);
   }
 
-  public function update_account($id, $user) {
-    $this->update("accounts", $id, $user);
+  public function update_users($id, $user) {
+    $this->update("users", $id, $user);
 }
 
  public function add_user($user){

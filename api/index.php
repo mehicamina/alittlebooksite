@@ -9,19 +9,24 @@ require_once dirname(__FILE__)."/dao/BookDao.class.php";
 require_once dirname(__FILE__)."/dao/CategoryDao.class.php";
 require_once dirname(__FILE__)."/dao/RentalDao.class.php";
 require_once dirname(__FILE__)."/dao/AddressDao.class.php";
-//$user_dao = new UserDao();
+
+$user_dao = new UserDao();
 
 //$user = $user_dao->get_user_by_id(2);
 //print_r($user);
-/*print_r($user);
-$user1 = [
+//print_r($user);
+$user22 = [
     "first_name" => "Emina",
     "last_name" => "Mehic Sero",
     "email" => " emi@mehic.ba",
-    "password" => "1234",
+    "password" => "567",
     "id" => 2
 ];
 
+$user = $user_dao->update(2,$user22);
+print_r($user);
+
+/*
 foreach($user as $name => $value){
     echo $name. "<br />";
     print $value. "<br />";
@@ -32,7 +37,7 @@ foreach($user as $name => $value){
 //$user = $user_dao->add_user($user1);
 //$user = $user_dao->update(2,$user1);
 //print_r($user);*/
-$dao = new BookDao();
+//$dao = new BookDao();
 //$knjige = $dao->get_all_books();
 //$books = $dao->get_books_by_id(1);
 //print_r($books);
@@ -48,16 +53,22 @@ $imetabele="books";
 $insert_book = $dao->add_book($new_insert);
 print_r($dao);
 */
-$kategorija = new CategoryDao(); 
+/*$kategorija = new CategoryDao(); 
 $new_category = [
     "id" => "1",
     "name" => "Science Fiction",
-    "book_id" => "1"
-];
+    "book_id" => "2"
+];*/
 
-$insert_category = $kategorija->add_category($new_category);
-print_r($kategorija);
+//$insert_category = $kategorija->add_category($new_category);
+//print_r($kategorija);
 
+//$update = $kategorija->update_category(1, $new_category); 
+//$printkategorija = $kategorija->get_all_categories();
+//print_r($printkategorija);
+
+/*$printpoime = $kategorija->get_category_by_name("Science Fiction");
+print_r($printpoid);*/
 
  //$adresa = new AddressDao();
  /*$new_address=[
@@ -72,6 +83,7 @@ print_r($adresa);*/
 /*
 $printadresa = $adresa->get_all_addresses();
 print_r($printadresa);*/
+
 
 
  ?>
