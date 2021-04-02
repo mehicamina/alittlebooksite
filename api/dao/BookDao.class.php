@@ -18,7 +18,6 @@ class BookDao extends BaseDao
     $this->update("books", $id, $book);
   }
 
-  
   public function get_books_by_id($id)
   {
     return $this->query_unique("SELECT * FROM books WHERE id = :id", ["id" => $id]);

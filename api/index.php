@@ -45,18 +45,33 @@ $dao = new BookDao();
 ];
 $imetabele="books";
 
-$insert_book = $dao->add_book($new_insert); //IMAM ERROR!
+$insert_book = $dao->add_book($new_insert);
 print_r($dao);
 */
-//$kategorija = new CategoryDao();    ERROR
- $adresa = new AddressDao();
- $new_address=[
-    "id"=>"1",
+$kategorija = new CategoryDao(); 
+$new_category = [
+    "id" => "1",
+    "name" => "Science Fiction",
+    "book_id" => "1"
+];
+
+$insert_category = $kategorija->add_category($new_category);
+print_r($kategorija);
+
+
+ //$adresa = new AddressDao();
+ /*$new_address=[
+    "id"=>"2",
+    "user_id"=>"2"
     
 ];
 
-$imetabeleadrese="addresses";
 
 $insert_address = $adresa->add_address($new_address); 
-print_r($adresa);
+print_r($adresa);*/
+/*
+$printadresa = $adresa->get_all_addresses();
+print_r($printadresa);*/
+
+
  ?>

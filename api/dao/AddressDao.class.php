@@ -17,12 +17,10 @@ public function update_address($id, $address){
   $this->update("addresses", $id, $address);
 }
 
-
 public function get_addresses_by_id($id)
 {
   return $this->query_unique("SELECT * FROM addresses WHERE id = :id", ["id" => $id]);
 }
-
 
 public function get_all_addresses(){
   return $this->query("SELECT * FROM addresses", []);
