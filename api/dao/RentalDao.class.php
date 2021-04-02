@@ -4,13 +4,41 @@ require_once dirname(__FILE__)."/BaseDao.class.php";
 
 class RentalDao extends BaseDao
 {
-  protected function get_rental_by_id($rental)
+  
+  public function __construct()
   {
-    return $this->get_by_id($rental);
+      parent::__construct("categories");
   }
+
+  public function add_rental($rental){
+    return $this->insert("rentals", $rental);
+  }
+
+  public function update_rental($id, $rental){
+    $this->update("rentals", $id, $rental);
+  }
+
+  public function get_rentals_by_id($id)
+{
+  return $this->query_unique("SELECT * FROM rentals WHERE id = :id", ["id" => $id]);
 }
 
 
+public function get_rental_by_user_id($user_id)
+{
+  return $this->query_unique("SELECT * FROM rentals WHERE user_id = :user_id", ["user_id" => $user_id]);
 
+}
+
+public function get_rental_by_book_id($book_id)
+{
+  return $this->query_unique("SELECT * FROM rentals WHERE book_id = :book_id", ["book_id" => $book_id]);
+
+}
+
+public function get_all_rentals(){
+  return $this->query("SELECT * FROM rentals", []);
+}
+}
 
  ?>

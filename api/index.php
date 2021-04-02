@@ -6,7 +6,9 @@ error_reporting(E_ALL);
 require_once dirname(__FILE__)."/dao/BaseDao.class.php";
 require_once dirname(__FILE__)."/dao/UserDao.class.php";
 require_once dirname(__FILE__)."/dao/BookDao.class.php";
-
+require_once dirname(__FILE__)."/dao/CategoryDao.class.php";
+require_once dirname(__FILE__)."/dao/RentalDao.class.php";
+require_once dirname(__FILE__)."/dao/AddressDao.class.php";
 //$user_dao = new UserDao();
 
 //$user = $user_dao->get_user_by_id(2);
@@ -36,14 +38,25 @@ $dao = new BookDao();
 //print_r($books);
 
 //test to insert acc
-$new_insert=[
+/*$new_insert=[
     "id"=>"11",
     "title"=>"The Monk Who Sold His Ferrari"
     
 ];
 $imetabele="books";
 
-$insert_book = $dao->add_book($new_insert);
+$insert_book = $dao->add_book($new_insert); //IMAM ERROR!
 print_r($dao);
+*/
+//$kategorija = new CategoryDao();    ERROR
+ $adresa = new AddressDao();
+ $new_address=[
+    "id"=>"1",
+    
+];
 
+$imetabeleadrese="addresses";
+
+$insert_address = $adresa->add_address($new_address); 
+print_r($adresa);
  ?>

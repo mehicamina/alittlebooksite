@@ -4,10 +4,30 @@ require_once dirname(__FILE__)."/BaseDao.class.php";
 
 class AddressDao extends BaseDao{
 
-  public function get_address_by_id($address)
+  public function __construct()
   {
-    return $this->get_by_id($address);
+      parent::__construct("addresses");
   }
+
+public function add_address($address){
+  return $this->insert("addresses", $address);
+}
+
+public function update_address($id, $address){
+  $this->update("addresses", $id, $address);
+}
+
+
+public function get_addresses_by_id($id)
+{
+  return $this->query_unique("SELECT * FROM addresses WHERE id = :id", ["id" => $id]);
+}
+
+
+public function get_all_addresses(){
+  return $this->query("SELECT * FROM addresses", []);
+}
+
 }
 
  ?>

@@ -2,9 +2,9 @@
 require_once dirname(__FILE__)."/../config.php";
 
 class BaseDao {
-  public $connection;
+  private $connection;
 
-  public $table;
+  private $table; 
 
   public function __construct($table){
     $this->table = $table;
