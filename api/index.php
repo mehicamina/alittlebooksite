@@ -9,11 +9,20 @@ require_once dirname(__FILE__)."/dao/BookDao.class.php";
 require_once dirname(__FILE__)."/dao/CategoryDao.class.php";
 require_once dirname(__FILE__)."/dao/RentalDao.class.php";
 require_once dirname(__FILE__)."/dao/AddressDao.class.php";
+require_once dirname(__FILE__)."/services/UserService.class.php";
 
 
 require_once dirname(__FILE__)."/../vendor/autoload.php";
+require_once dirname(__FILE__)."/../api/routes/users.php";
 
-//Flight::register('userDao','UserDao');
+//register DAO Layer
+Flight::register('userDao','UserDao');
+
+//register Services
+Flight::register('userService','UserService');
+
+//include all routes
+require_once dirname(__FILE__)."/routes/users.php";
 
 Flight::set('flight.log_errors', TRUE);
 
@@ -21,34 +30,8 @@ Flight::route('/',function(){
     echo 'hello world!';
 });
 Flight::start();
-echo 'hello world!';
-/*
-Flight::route('GET /users', function(){ 
-    Flight::json(Flight::userDao()->get_all(0,10));
-});
-*/
-/*
-Flight::route('GET /users/@id', function($id){
-    Flight::json(Flight::userDao()->get_by_id($id));
-    });
-*/
-/*
-Flight::route('POST /users', function(){
-   $request = Flight::request();
-   Flight::json(Flight::userDao()->add($request -> data-> getData()));
-    });
-  */  
-/*
-Flight::route('PUT /users/@id', function($id){
-    $request = Flight::request();
-    $data = $request->data->getData();
 
-    Flight::userDao()->update($id,$data);
 
-    $user = Flight::userDao()->get_by_id($id);
-    Flight::json($user);
-})
-*/
 
 
 
