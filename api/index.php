@@ -13,7 +13,7 @@ require_once dirname(__FILE__)."/dao/AddressDao.class.php";
 
 require_once dirname(__FILE__)."/../vendor/autoload.php";
 
-Flight::register('userDao','UserDao');
+//Flight::register('userDao','UserDao');
 
 Flight::set('flight.log_errors', TRUE);
 
@@ -22,23 +22,23 @@ Flight::route('/',function(){
 });
 Flight::start();
 echo 'hello world!';
-
+/*
 Flight::route('GET /users', function(){ 
     Flight::json(Flight::userDao()->get_all(0,10));
 });
-
-
+*/
+/*
 Flight::route('GET /users/@id', function($id){
     Flight::json(Flight::userDao()->get_by_id($id));
     });
-
-
+*/
+/*
 Flight::route('POST /users', function(){
    $request = Flight::request();
    Flight::json(Flight::userDao()->add($request -> data-> getData()));
     });
-    
-
+  */  
+/*
 Flight::route('PUT /users/@id', function($id){
     $request = Flight::request();
     $data = $request->data->getData();
@@ -48,6 +48,7 @@ Flight::route('PUT /users/@id', function($id){
     $user = Flight::userDao()->get_by_id($id);
     Flight::json($user);
 })
+*/
 
 
 

@@ -31,6 +31,11 @@ class UserDao extends BaseDao {
     return $user;
   }
 
+  public function get_users($search, $offset, $limit){
+    return $this->query("SELECT * FROM users
+                         WEHERE LOWER(first_name) LIKE CONCAT('%', :first_name, '%')
+                          LIMIT ${limit} OFFSET {$offset}", ["first_name" => $search]);
+  }
   /*public function update_user($id, $user){
     $insert = "";
     $sql ="UPDATE users SET first_name = :first_name, last_name = :last_name, email =:email, password = :password, id = :id) WHERE id = :id";
