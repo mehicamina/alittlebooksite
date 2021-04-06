@@ -3,8 +3,8 @@
 
 Flight::route('GET /users', function(){ 
    $offset = Flight::query('offset', 0); //routes and business 03.01 5:20 
-    $limit = Flight::query('limit', 10);
-    $search = FLight::query('search');
+   $limit = Flight::query('limit', 10);
+   $search = FLight::query('search');
     
     Flight::json(Flight::userService()->get_users($search, $offset, $limit));
     
@@ -24,7 +24,7 @@ Flight::route('POST /users', function(){
 Flight::route('PUT /users/@id', function($id){
     $data = Flight::request()->data->getData();
     Flight::userDao()->update($id,$data);
-})
+});
 
-?>
+
 
