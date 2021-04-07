@@ -25,9 +25,6 @@ Flight::map('query', function($name, $default_value=NULL) {
   });
 
 
-//register DAO Layer
-Flight::register('userDao','UserDao');
-
 //register Services
 Flight::register('userService','UserService');
 

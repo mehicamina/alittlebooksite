@@ -29,6 +29,36 @@ class UserService extends BaseService{
         return parent::add($user);
     }
 
+    public function register($user){
+        if (!isset($user['first_name'])) throw new Exception("First name field is required");
+    
+        try {
+          $user = $this->dao->add([
+              "id" => $user['id'],
+            "first_name" => $user['first_name'],
+            "last_name" => $user['last_name'],
+            "address" => $user['address'],
+            "email" => $user['email'],
+            "password" => md5($user['password'])
+           // "token" => md5(random_bytes(16))
+          ]);
+              print_r($user);
+              
+    } 
+    catch (\Exception $e) {
+      //users.PRIMARY
+      if (str_contains($e->getMessage(), 'users.PRIMARY')) {
+        throw new Exception("Account with same email exists in the database", 400, $e);
+      }
+      else{
+        throw $e;
+      }
+    }
+
+    return $user;
+    
+}
+
 
 }
 
