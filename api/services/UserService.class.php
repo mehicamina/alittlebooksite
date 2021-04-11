@@ -34,13 +34,13 @@ class UserService extends BaseService{
     
         try {
           $user = $this->dao->add([
-              "id" => $user['id'],
+            "id" => $user['id'],
             "first_name" => $user['first_name'],
             "last_name" => $user['last_name'],
             "address" => $user['address'],
             "email" => $user['email'],
-            "password" => md5($user['password'])
-           // "token" => md5(random_bytes(16))
+            "password" => md5($user['password']),
+            "token" => md5(random_bytes(16))
           ]);
               print_r($user);
               
@@ -58,10 +58,15 @@ class UserService extends BaseService{
     return $user;
     
 }
+  public function confirm($token){
+    $user = $this->dao->get_user_by_token($token);
 
+    if (!isset($user['id'])) throw new Exception("Invalid token");
+
+    $this->dao->update($user['id'], ["status" => "ACTIVE"]);
+  }
 
 }
-
-
+ 
 
 ?>

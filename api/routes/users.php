@@ -2,7 +2,7 @@
 
 
 Flight::route('GET /users', function(){ 
-   $offset = Flight::query('offset', 0); //routes and business 03.01 5:20 
+   $offset = Flight::query('offset', 0); 
    $limit = Flight::query('limit', 10);
    $search = FLight::query('search');
     
@@ -30,6 +30,13 @@ Flight::route('POST /users/register', function(){
     $data = Flight::request()->data->getData();
     Flight::json(Flight::userService()->register($data));
      });
+
+Flight::route('GET /users/confirm/@token', function($token){
+    Flight::json(Flight::userService()->confirm($token));
+    Flight::json(["message" => "Your account has been activated"]);
+    });
+
+
 ?>
 
 
