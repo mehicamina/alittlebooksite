@@ -2,15 +2,16 @@
 require_once dirname(__FILE__)."/../config.php";
 
 class BaseDao {
-  public $connection;
+  protected $connection;
 
-  public $table; 
+  protected $table; 
 
   public function __construct($table){
     $this->table = $table;
     try {
       $this->connection = new PDO("mysql:host=".Config::DB_HOST.";dbname=".Config::DB_SCHEME, Config::DB_USERNAME, Config::DB_PASSWORD);
       $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //$this->connection->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
       }
     catch(PDOException $e) {
     //  echo "Connection failed!";
@@ -77,6 +78,24 @@ class BaseDao {
     public function add($entity){
       return $this->insert($this->table, $entity);
     }
+
+    public function beginTransaction(){
+      $this->connection->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+      $this->connection->beginTransaction();
+    }
+
+    public function commit(){
+      $this->connection->commit();
+      $this->connection->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
+    }
+
+    public function rollBack(){
+      $this->connection->rollBack();
+      $this->connection->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
+    }
+
+
+
     public function parse_order($order){
       switch(substr($order, 0, 1)){
         case '-': $order_direction = "ASC"; break;

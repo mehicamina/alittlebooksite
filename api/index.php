@@ -31,7 +31,12 @@ Flight::register('userService','UserService');
 //include all routes
 require_once dirname(__FILE__)."/routes/users.php";
 
-//Flight::set('flight.log_errors', TRUE);
+Flight::set('flight.log_errors', TRUE);
+
+/* error handling for API */
+Flight::map('error', function(Exception $ex){
+  Flight::json(["message" => $ex->getMessage()], $ex->getCode() ? $ex->getCode() : 500);
+});
 
 Flight::start();
 
