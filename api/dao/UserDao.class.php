@@ -31,10 +31,15 @@ class UserDao extends BaseDao {
     return $user;
   }
 
-  public function get_users($search, $offset, $limit){
+  public function get_users($search, $offset, $limit, $order = "-id"){
+
+    list($order_column, $order_direction) = self::parse_order($order);
+
     return $this->query("SELECT * FROM users
-                         WEHERE LOWER(first_name) LIKE CONCAT('%', :first_name, '%')
-                          LIMIT ${limit} OFFSET {$offset}", ["first_name" => strtolower($search)]);
+                         WHERE LOWER(first_name) LIKE CONCAT('%', :first_name, '%')
+                         ORDER BY ${order_column} ${order_direction}
+                         LIMIT ${limit} OFFSET {$offset}", 
+                         ["first_name" => strtolower($search)]);
   }
   /*public function update_user($id, $user){
     $insert = "";
@@ -49,6 +54,7 @@ class UserDao extends BaseDao {
 public function get_user_by_token($token){
   return $this->query_unique("SELECT * FROM users WHERE token = :token", ["token" => $token]);
 }
+
 }
 
 

@@ -14,17 +14,17 @@ class UserService extends BaseService{
     
         
     
-    public function get_users($search, $offset, $limit){
+    public function get_users($search, $offset, $limit, $order){
         if($search){
-            return $this->dao->get_users($search, $offset, $limit);
+            return $this->dao->get_users($search, $offset, $limit, $order);
         }else{
-        return $this->dao->get_all($offset, $limit);
+        return $this->dao->get_all($offset, $limit, $order);
         }
     }    
 
     public function add($user){
         //validation of user data
-        if(!isset($user['first_name'])) throw new Exception("blabla is missing");
+        if(!isset($user['first_name'])) throw new Exception("First name is missing");
 
         return parent::add($user);
     }
@@ -50,7 +50,7 @@ class UserService extends BaseService{
       if (str_contains($e->getMessage(), 'users.PRIMARY')) {
         throw new Exception("Account with same email exists in the database", 400, $e);
       }
-      else{
+      else{ 
         throw $e;
       }
     }
