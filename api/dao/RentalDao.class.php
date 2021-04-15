@@ -40,15 +40,18 @@ public function get_all_rentals(){
   return $this->query("SELECT * FROM rentals", []);
 }
 
-public function get_rentals($user_id, $offset, $limit, $search){
+public function get_rentals($user_id, $offset, $limit, $search, $order){
+  list($order_column, $order_direction) = self::parse_order($order);
+
   $query = "SELECT *
             FROM rentals
             WHERE user_id = :user_id";
   if (isset($search)){
-    $query .= "AND (name LIKE CONCAT ('%', :search, '%') OR subject LIKE CONCAT('%', :search, '%'))";
-    $params['search'] = $search;
+    $query .= "AND ( LOWER(name) LIKE CONCAT ('%', :search, '%') OR LOWER (subject) LIKE CONCAT('%', :search, '%'))";
+    $params['search'] = strtolower($search);
   }
                 
+  $query = "ORDER BY ${order_column} ${order_direction}";
   $query = "LIMIT ${limit} OFFSET {$offset}";
 
   return $this->query($query, $params);
