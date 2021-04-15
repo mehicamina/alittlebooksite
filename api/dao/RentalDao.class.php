@@ -39,6 +39,22 @@ public function get_rental_by_book_id($book_id)
 public function get_all_rentals(){
   return $this->query("SELECT * FROM rentals", []);
 }
+
+public function get_rentals($user_id, $offset, $limit, $search){
+  $query = "SELECT *
+            FROM rentals
+            WHERE user_id = :user_id";
+  if (isset($search)){
+    $query .= "AND (name LIKE CONCAT ('%', :search, '%') OR subject LIKE CONCAT('%', :search, '%'))";
+    $params['search'] = $search;
+  }
+                
+  $query = "LIMIT ${limit} OFFSET {$offset}";
+
+  return $this->query($query, $params);
+                       
+}
+
 }
 
  ?>

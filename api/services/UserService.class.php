@@ -30,6 +30,7 @@ class UserService extends BaseService{
     }
 
     public function register($user){
+        $this->dao->beginTransaction();
         if (!isset($user['first_name'])) throw new Exception("First name field is required");
     
         try {
@@ -44,10 +45,11 @@ class UserService extends BaseService{
           ]);
               print_r($user);
               
-    } 
-    catch (\Exception $e) {
-      //users.PRIMARY
-      if (str_contains($e->getMessage(), 'users.PRIMARY')) {
+         $this->dao->commit();
+       } catch (\Exception $e) {
+       $this->dao->rollBack();
+       //users.primary
+      if (str_contains($e->getMessage(), 'users.uq_email')) {
         throw new Exception("Account with same email exists in the database", 400, $e);
       }
       else{ 

@@ -12,6 +12,9 @@ class RentalService extends BaseService{
         $this->dao = new RentalDao();
     }
     
+    public function get_rentals($user_id, $offset, $limit){
+     return $this->dao->get_rentals($user_id, $offset, $limit); 
+    }
     public function add($rental)
     {
       try {
