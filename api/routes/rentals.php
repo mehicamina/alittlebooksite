@@ -5,9 +5,9 @@ Flight::route('GET /rentals', function(){
     $offset = Flight::query('offset', 0); 
     $limit = Flight::query('limit', 10);
     $search = Flight::query('search', 10);
-    $search = Flight::query('order', '-id');
+    $order = Flight::query('order', '-id');
 
-   Flight::json(Flight::rentalService()->get_rentals($user_id, $offset, $limit, $search));
+   Flight::json(Flight::rentalService()->get_rentals($user_id, $offset, $limit, $search, $order));
     });
 
 Flight::route('GET /rentals/@id', function($id){

@@ -47,7 +47,7 @@ public function get_rentals($user_id, $offset, $limit, $search, $order){
             FROM rentals
             WHERE user_id = :user_id";
   if (isset($search)){
-    $query .= "AND ( LOWER(name) LIKE CONCAT ('%', :search, '%') OR LOWER (subject) LIKE CONCAT('%', :search, '%'))";
+    $query .= "AND ( rental_date LIKE CONCAT ('%', :search, '%') OR return_date LIKE CONCAT('%', :search, '%'))";
     $params['search'] = strtolower($search);
   }
                 

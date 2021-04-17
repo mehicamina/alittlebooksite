@@ -10,34 +10,35 @@ require_once dirname(__FILE__)."/dao/CategoryDao.class.php";
 require_once dirname(__FILE__)."/dao/RentalDao.class.php";
 require_once dirname(__FILE__)."/dao/AddressDao.class.php";
 require_once dirname(__FILE__)."/services/UserService.class.php";
-//require_once dirname(__FILE__)."/routes/users.php";
+require_once dirname(__FILE__)."/services/RentalService.class.php";
 
-
+/* include all routes */
 require_once dirname(__FILE__)."/../vendor/autoload.php";
 require_once dirname(__FILE__)."/../api/routes/users.php";
 
+/* reading query params from url */
 Flight::map('query', function($name, $default_value=NULL) {
     $request = Flight::request();
     $query_param = @$request->query->getData()[$name];
     $query_param = $query_param ? $query_param : $default_value;
     return $query_param;
-  
   });
 
 
-//register Services
+/* register Services */
 Flight::register('userService','UserService');
+Flight::register('rentalService','RentalService');
 
-//include all routes
+/* include all routes */
 require_once dirname(__FILE__)."/routes/users.php";
 require_once dirname(__FILE__)."/routes/rentals.php";
 
 Flight::set('flight.log_errors', TRUE);
 
 /* error handling for API */
- Flight::map('error', function(Exception $ex){
+ /*Flight::map('error', function(Exception $ex){
   Flight::json(["message" => $ex->getMessage()], $ex->getCode() ? $ex->getCode() : 500);
-}); 
+}); */
 
 Flight::start();
 

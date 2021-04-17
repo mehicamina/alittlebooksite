@@ -80,18 +80,18 @@ class BaseDao {
     }
 
     public function beginTransaction(){
-      $this->connection->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
+     // $this->connection->setAttribute(PDO::ATTR_AUTOCOMMIT, 0);
       $this->connection->beginTransaction();
     }
 
     public function commit(){
       $this->connection->commit();
-      $this->connection->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
+     // $this->connection->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
     }
 
     public function rollBack(){
       $this->connection->rollBack();
-      $this->connection->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
+     // $this->connection->setAttribute(PDO::ATTR_AUTOCOMMIT, 1);
     }
 
 

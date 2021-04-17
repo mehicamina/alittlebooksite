@@ -12,15 +12,15 @@ class RentalService extends BaseService{
         $this->dao = new RentalDao();
     }
     
-    public function get_rentals($user_id, $offset, $limit){
-     return $this->dao->get_rentals($user_id, $offset, $limit); 
+    public function get_rentals($user_id, $offset, $limit, $search, $order){
+     return $this->dao->get_rentals($user_id, $offset, $limit, $search, $order); 
     }
     public function add($rental)
     {
       try {
         return parent::add($rental);
       } catch (\Exception $e) {
-        if (str_contains($e->getMessage(), 'rental.uq ')) /*sta ovdje da stavim, bookid i user id??*/ {
+        if (str_contains($e->getMessage(), 'rental.uq_rental_date ')) {
           throw new Exception("Rental with same data alredy exist", 400, $e);
         }else{
           throw $e;
