@@ -25,6 +25,20 @@ Flight::map('query', function($name, $default_value=NULL) {
   });
 
 
+  Flight::route('GET /swagger', function() {
+    $openapi = @\OpenApi\scan(dirname(__FILE__)."/routes");
+    header('Content-Type: application/json');
+    echo $openapi->toJson();
+  
+  
+  });
+
+  //redirect from api to docs
+Flight::route('GET /', function() {
+  Flight::redirect('/docs');
+});
+
+
 /* register Services */
 Flight::register('userService','UserService');
 Flight::register('rentalService','RentalService');
