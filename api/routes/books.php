@@ -22,7 +22,7 @@ Flight::route('GET /books', function(){
 
 /**
  *     @OA\Get(path="/books/{id}", tags={"books"}, 
- *     @OA\Parameter(type="integer", in="path", name="id", default=1, description="ID of account"),
+ *     @OA\Parameter(type="integer", in="path", name="id", default=1, description="ID of book"),
  *     @OA\Response(response="200", description="Fetch individual user")
  * )
  */ 

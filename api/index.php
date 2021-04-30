@@ -13,6 +13,7 @@ require_once dirname(__FILE__)."/services/UserService.class.php";
 require_once dirname(__FILE__)."/services/RentalService.class.php";
 require_once dirname(__FILE__)."/services/AddressService.class.php";
 require_once dirname(__FILE__)."/services/BookService.class.php";
+require_once dirname(__FILE__)."/services/CategoryService.class.php";
 
 /* include all routes */
 require_once dirname(__FILE__)."/../vendor/autoload.php";
@@ -46,11 +47,15 @@ Flight::register('userService','UserService');
 Flight::register('rentalService','RentalService');
 Flight::register('addressService','AddressService');
 Flight::register('bookService','BookService');
+Flight::register('categoryService','CategoryService');
 
 /* include all routes */
 require_once dirname(__FILE__)."/routes/users.php";
 require_once dirname(__FILE__)."/routes/rentals.php";
 require_once dirname(__FILE__)."/routes/address.php";
+require_once dirname(__FILE__)."/routes/books.php";
+require_once dirname(__FILE__)."/routes/categories.php";
+
 
 Flight::set('flight.log_errors', TRUE);
 

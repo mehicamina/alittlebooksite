@@ -1,7 +1,7 @@
 <?php
 
 require_once dirname(__FILE__)."/../services/BaseService.class.php";
-require_once dirname(__FILE__)."/../dao/UserDao.class.php";
+require_once dirname(__FILE__)."/../dao/BookDao.class.php";
 require_once dirname(__FILE__)."/../dao/BaseDao.class.php";
 
 
