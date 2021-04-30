@@ -11,6 +11,8 @@ require_once dirname(__FILE__)."/dao/RentalDao.class.php";
 require_once dirname(__FILE__)."/dao/AddressDao.class.php";
 require_once dirname(__FILE__)."/services/UserService.class.php";
 require_once dirname(__FILE__)."/services/RentalService.class.php";
+require_once dirname(__FILE__)."/services/AddressService.class.php";
+require_once dirname(__FILE__)."/services/BookService.class.php";
 
 /* include all routes */
 require_once dirname(__FILE__)."/../vendor/autoload.php";
@@ -42,10 +44,13 @@ Flight::route('GET /', function() {
 /* register Services */
 Flight::register('userService','UserService');
 Flight::register('rentalService','RentalService');
+Flight::register('addressService','AddressService');
+Flight::register('bookService','BookService');
 
 /* include all routes */
 require_once dirname(__FILE__)."/routes/users.php";
 require_once dirname(__FILE__)."/routes/rentals.php";
+require_once dirname(__FILE__)."/routes/address.php";
 
 Flight::set('flight.log_errors', TRUE);
 
