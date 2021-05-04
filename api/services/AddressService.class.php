@@ -26,7 +26,13 @@ class AddressService extends BaseService{
     }
 
     
-    public function update_address($id, $data) { //provjeriti parametre
-       return $this->dao->update_address("addresses", $id, $data);
+    public function update_address($id, $address) { 
+       return $this->dao->update_address($id, $address);
+    }
+
+    public function get_address_by_id($id){
+        return $this->dao->get_addresses_by_id($id);
+
     }
 }
+?>

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @OA\Get(path="/users", tags={"address"},
+ * @OA\Get(path="/address", tags={"address"},
  *     @OA\Parameter(type="integer", in="query", name="offset", default=0, description="Offset for pagination"),
  *     @OA\Parameter(type="integer", in="query", name="limit", default=10, description="Limit for pagination"),
  *     @OA\Parameter(type="string", in="query", name="search", description="Search string for address"),
@@ -21,18 +21,18 @@ Flight::route('GET /address', function(){
 
 
 /**
- *     @OA\Get(path="/users/{id}", tags={"users"}, 
- *     @OA\Parameter(type="integer", in="path", name="id", default=1, description="ID of account"),
- *     @OA\Response(response="200", description="Fetch individual user")
+ *     @OA\Get(path="/address/{id}", tags={"address"}, 
+ *     @OA\Parameter(type="integer", in="path", name="id", default=1, description="ID of address"),
+ *     @OA\Response(response="200", description="Fetch individual address")
  * )
  */ 
 
-Flight::route('GET /users/@id', function($id){
-    Flight::json(Flight::userService()->get_by_id($id));
+Flight::route('GET /address/@id', function($id){
+    Flight::json(Flight::addressService()->get_address_by_id($id));
     });
 
 /**
- *     @OA\Post(path="/addresses", tags={"addresses"}, 
+ *     @OA\Post(path="/address", tags={"address"}, 
  * @OA\RequestBody(description="Basic address info", required=true,
  *     @OA\MediaType(mediaType="application/json",
  *    			@OA\Schema(
@@ -53,7 +53,7 @@ Flight::route('POST /address', function(){
     });
 
 /**
- *     @OA\Put(path="/addresses/{id}", tags={"addresses"}, 
+ *     @OA\Put(path="/address/{id}", tags={"address"}, 
  *     @OA\Parameter(type="integer", in="path", name="id", default=1),
  * @OA\RequestBody(description="Basic address info that is going to be updated", required=true,
  *     @OA\MediaType(mediaType="application/json",
@@ -68,9 +68,9 @@ Flight::route('POST /address', function(){
  *     @OA\Response(response="200", description="Update addresses by user ID from database")
  * )
  */ 
-Flight::route('PUT /users/@id', function($id){
+Flight::route('PUT /address/@id', function($id){
     $data = Flight::request()->data->getData();
-    Flight::json(Flight::userService()->update($id,$data));
+    Flight::json(Flight::addressService()->update_address($id,$data));
 });
 
 ?>

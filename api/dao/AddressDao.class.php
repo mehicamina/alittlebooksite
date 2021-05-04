@@ -13,8 +13,9 @@ public function add_address($address){
   return $this->insert("addresses", $address);
 }
 
+
 public function update_address($id, $address){
-  $this->update("addresses", $id, $address);
+   $this->update("addresses", $id, $address);
 }
 
 public function get_addresses_by_id($id)

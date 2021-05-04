@@ -13,6 +13,11 @@ class BookService extends BaseService{
     }
 
 
+    public function get_books($search, $offset, $limit, $order){
+            return $this->dao->get_all_books($search, $offset, $limit, $order);
+        }
+
+
    public function get_book_by_id($search, $offset, $limit, $order){
         if($search){
             return $this->dao->get_book_by_id($search, $offset, $limit, $order);
@@ -30,18 +35,14 @@ class BookService extends BaseService{
     } 
 
     public function add_book($book){
-        //validation of book data
-        if(!isset($book['title'])) throw new Exception("Book title is missing");
-
-        return parent::add($book);
+        return $this->dao->add_book($book);
     }
 
 
-    public function update_books($id, $data) { //provjeriti parametre
+    public function update_books($id, $data) { 
         return $this->dao->update_books("books", $id, $data);
      }
 }
 
 
 ?>
-

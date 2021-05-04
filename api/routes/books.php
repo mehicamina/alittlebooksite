@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @OA\Get(path="/users", tags={"books"},
+ * @OA\Get(path="/books", tags={"books"},
  *     @OA\Parameter(type="integer", in="query", name="offset", default=0, description="Offset for pagination"),
  *     @OA\Parameter(type="integer", in="query", name="limit", default=10, description="Limit for pagination"),
  *     @OA\Parameter(type="string", in="query", name="search", description="Search string for book"),
@@ -36,11 +36,11 @@ Flight::route('GET /books/@id', function($id){
  * @OA\RequestBody(description="Basic book info", required=true,
  *     @OA\MediaType(mediaType="application/json",
  *    			@OA\Schema(
- *    				 @OA\Property(property="title", required="true", type="string", description="Title of the book"),
+ *    				 @OA\Property(property="title", required="true", type="string", example="Bijeli Ocnjak", description="Title of the book"),
  *    				 @OA\Property(property="author", required="true", type="string", example="Paulo Coelho", description="Author of the book"),
  *     				 @OA\Property(property="description", required="true", type="string", example="Novel", description="Description of the book"),
  *    				 @OA\Property(property="realise_year", type="integer", example="2011", description="Realise year of the book"),
- *                   @OA\Property(property="status", type="string", example="ACTIVE", description="Status of the book"),
+ *                   @OA\Property(property="status", type="string", example="AVAILABLE", description="Status of the book"),
  * 
  *          )
  *     )
@@ -51,7 +51,7 @@ Flight::route('GET /books/@id', function($id){
 
 Flight::route('POST /books', function(){
    $data = Flight::request()->data->getData();
-   Flight::json(Flight::booksService()->add_books($data));
+   Flight::json(Flight::bookService()->add_book($data));
     });
 
 /**
