@@ -33,8 +33,12 @@ class CategoryService extends BaseService{
         return $this->dao->add_category($data);
     }
 
+    public function get_categories($search, $offset, $limit, $order){
+        return $this->dao->get_all_categories($search, $offset, $limit, $order);
+    }
+
     
-    public function update_category($id, $data) { //provjeriti parametre
-       return $this->dao->update_category("categories", $id, $data);
+    public function update_category($id, $data) { 
+       return $this->dao->update_category($id, $data);
     }
 }

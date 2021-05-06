@@ -15,7 +15,7 @@ class CategoryDao extends BaseDao
     }
 
     public function update_category($id, $category){
-      $this->update("categories", $id, $category);
+      $this->execute_update("categories", $id, $category);
     }
 
     public function get_categories_by_id($id)

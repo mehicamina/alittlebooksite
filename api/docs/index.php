@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Flight Reservation API</title>
+    <title>A little book site API</title>
     <link rel="stylesheet" type="text/css" href="//<?=$_SERVER['SERVER_NAME'], $_SERVER['REQUEST_URI']?>swagger-ui.css">
     <link rel="icon" type="image/png" href="//<?=$_SERVER['SERVER_NAME'], $_SERVER['REQUEST_URI']?>favicon-32x32.png" sizes="32x32" />
     <style>

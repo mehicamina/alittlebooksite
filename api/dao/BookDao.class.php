@@ -15,7 +15,7 @@ class BookDao extends BaseDao
   }
  
   public function update_book($id, $book){
-    $this->update("books", $id, $book);
+    $this->execute_update("books", $id, $book);
   }
 
   public function get_books_by_id($id)

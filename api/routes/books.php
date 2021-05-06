@@ -55,7 +55,7 @@ Flight::route('POST /books', function(){
     });
 
 /**
- *     @OA\Put(path="/books/{id}", tags={"books"}, 
+ *     @OA\Put(path="/book/{id}", tags={"books"}, 
  *     @OA\Parameter(type="integer", in="path", name="id", default=1),
  * @OA\RequestBody(description="Basic book info that is going to be updated", required=true,
  *     @OA\MediaType(mediaType="application/json",
@@ -74,7 +74,8 @@ Flight::route('POST /books', function(){
  */ 
 Flight::route('PUT /book/@id', function($id){
     $data = Flight::request()->data->getData();
-    Flight::json(Flight::bookService()->update($id,$data));
+    Flight::bookService()->update_books($id,$data);
+    Flight::json("The book has been updated.");
 });
 
 ?>

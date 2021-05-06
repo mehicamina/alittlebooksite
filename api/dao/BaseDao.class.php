@@ -58,7 +58,7 @@ class BaseDao {
       return $this->query_unique("SELECT * FROM users WHERE email = :email", ["email" => $email]);
     }
 
-    private function execute_update($table, $id, $entity, $id_column = "id"){
+    public function execute_update($table, $id, $entity, $id_column = "id"){
       $query = "UPDATE ${table} SET ";
       foreach($entity as $name => $value){
         $query .= $name ."= :". $name. ", ";

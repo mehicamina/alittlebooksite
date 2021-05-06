@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @OA\Get(path="/categories", tags={"category"},
+ * @OA\Get(path="/categories", tags={"categories"},
  *     @OA\Parameter(type="integer", in="query", name="offset", default=0, description="Offset for pagination"),
  *     @OA\Parameter(type="integer", in="query", name="limit", default=10, description="Limit for pagination"),
  *     @OA\Parameter(type="string", in="query", name="search", description="Search string for category"),
@@ -10,7 +10,7 @@
  * )
  */ 
 
-Flight::route('GET /category', function(){ 
+Flight::route('GET /categories', function(){ 
    $offset = Flight::query('offset', 0); 
    $limit = Flight::query('limit', 10);
    $search = FLight::query('search');
@@ -21,7 +21,7 @@ Flight::route('GET /category', function(){
 
 
 /**
- *     @OA\Get(path="/category/{id}", tags={"categories"}, 
+ *     @OA\Get(path="/categories/{id}", tags={"categories"}, 
  *     @OA\Parameter(type="integer", in="path", name="id", default=1, description="ID of category"),
  *     @OA\Response(response="200", description="Fetch individual category")
  * )
@@ -41,11 +41,11 @@ Flight::route('GET /categories/@id', function($id){
  *          )
  *     )
  * ),
- *     @OA\Response(response="200", description="Address that has been added into database with ID assigned.")
+ *     @OA\Response(response="200", description="Category that has been added into database with ID assigned.")
  * )
  */ 
 
-Flight::route('POST /category', function(){
+Flight::route('POST /categories', function(){
    $data = Flight::request()->data->getData();
    Flight::json(Flight::categoryService()->add_category($data));
     });
@@ -66,7 +66,8 @@ Flight::route('POST /category', function(){
  */ 
 Flight::route('PUT /categories/@id', function($id){
     $data = Flight::request()->data->getData();
-    Flight::json(Flight::categoryService()->update($id,$data));
+    Flight::categoryService()->update_category($id,$data);
+    Flight::json("A category has been updated.");
 });
 
 ?>

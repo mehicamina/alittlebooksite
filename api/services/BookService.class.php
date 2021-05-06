@@ -40,7 +40,7 @@ class BookService extends BaseService{
 
 
     public function update_books($id, $data) { 
-        return $this->dao->update_books("books", $id, $data);
+        return $this->dao->update_book($id, $data);
      }
 }
 
