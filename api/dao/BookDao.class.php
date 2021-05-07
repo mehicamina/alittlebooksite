@@ -26,8 +26,7 @@ class BookDao extends BaseDao
   public function get_book_by_title($title)
   {
     return $this->query_unique("SELECT * FROM books WHERE title = :title", ["title" => $title]);
-
-  }
+ }
 
   public function get_all_books(){
     return $this->query("SELECT * FROM books", []);

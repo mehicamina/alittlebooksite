@@ -11,22 +11,41 @@ class RentalService extends BaseService{
     public function __construct(){
         $this->dao = new RentalDao();
     }
-    
-    public function get_rentals($user_id, $offset, $limit, $search, $order){
-     return $this->dao->get_rentals($user_id, $offset, $limit, $search, $order); 
-    }
-    public function add($rental)
-    {
-      try {
-        return parent::add($rental);
-      } catch (\Exception $e) {
-        if (str_contains($e->getMessage(), 'rental.uq_rental_date ')) {
-          throw new Exception("Rental with same data alredy exist", 400, $e);
+
+    public function get_rentals_by_id($id){
+      return $this->dao->get_rentals_by_id($id);
+
+  } 
+
+   public function get_rental_by_user_id($search, $offset, $limit, $order){
+        if($search){
+            return $this->dao->get_rental_by_user_id($search, $offset, $limit, $order);
         }else{
-          throw $e;
+        return $this->dao->get_all_rentals($offset, $limit, $order);
         }
+    } 
+
+    public function get_rental_by_book_id($search, $offset, $limit, $order){
+      if($search){
+          return $this->dao->get_rental_by_book_id($search, $offset, $limit, $order);
+      }else{
+      return $this->dao->get_all_rentals($offset, $limit, $order);
       }
-    }
+  } 
+
+    public function get_rentals($search, $offset, $limit, $order){
+      return $this->dao->get_all_rentals($search, $offset, $limit, $order);
+  }
+
+    public function add_rental($data) {
+      return $this->dao->add_rental($data);
+  }
+
+  
+  public function update_rental($id, $data) { 
+    return $this->dao->update_rental($id, $data);
+ }
+
 }
  
 

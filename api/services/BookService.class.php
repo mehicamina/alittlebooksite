@@ -24,7 +24,11 @@ class BookService extends BaseService{
         }else{
         return $this->dao->get_all_books($offset, $limit, $order);
         }
-    }  
+    }   
+
+    public function add_book($book){
+        return $this->dao->add_book($book);
+    }
 
     public function get_book_by_title($search, $offset, $limit, $order){
         if($search){
@@ -32,10 +36,6 @@ class BookService extends BaseService{
         }else{
         return $this->dao->get_all_books($offset, $limit, $order);
         }
-    } 
-
-    public function add_book($book){
-        return $this->dao->add_book($book);
     }
 
 

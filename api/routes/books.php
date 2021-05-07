@@ -23,12 +23,25 @@ Flight::route('GET /books', function(){
 /**
  *     @OA\Get(path="/books/{id}", tags={"books"}, 
  *     @OA\Parameter(type="integer", in="path", name="id", default=1, description="ID of book"),
- *     @OA\Response(response="200", description="Fetch individual user")
+ *     @OA\Response(response="200", description="Fetch individual book")
  * )
  */ 
 
 Flight::route('GET /books/@id', function($id){
     Flight::json(Flight::bookService()->get_by_id($id));
+    });
+
+
+
+    /**
+ *     @OA\Get(path="/books/{title}", tags={"books"}, 
+ *     @OA\Parameter(type="string", in="path", name="title", default=Alef, description="Title of the book"),
+ *     @OA\Response(response="200", description="Fetch individual book by it's title")
+ * )
+ */ 
+
+Flight::route('GET /books/@title', function($title){
+    Flight::json(Flight::bookService()->get_book_by_title($title));
     });
 
 /**

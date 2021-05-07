@@ -15,7 +15,7 @@ class RentalDao extends BaseDao
   }
 
   public function update_rental($id, $rental){
-    $this->update("rentals", $id, $rental);
+    $this->execute_update("rentals", $id, $rental);
   }
 
   public function get_rentals_by_id($id)
