@@ -9,15 +9,14 @@ require_once dirname(__FILE__)."/dao/BookDao.class.php";
 require_once dirname(__FILE__)."/dao/CategoryDao.class.php";
 require_once dirname(__FILE__)."/dao/RentalDao.class.php";
 require_once dirname(__FILE__)."/dao/AddressDao.class.php";
+
+
 require_once dirname(__FILE__)."/services/UserService.class.php";
 require_once dirname(__FILE__)."/services/RentalService.class.php";
 require_once dirname(__FILE__)."/services/AddressService.class.php";
 require_once dirname(__FILE__)."/services/BookService.class.php";
 require_once dirname(__FILE__)."/services/CategoryService.class.php";
 
-/* include all routes */
-require_once dirname(__FILE__)."/../vendor/autoload.php";
-require_once dirname(__FILE__)."/../api/routes/users.php";
 
 /* reading query params from url */
 Flight::map('query', function($name, $default_value=NULL) {
@@ -27,6 +26,9 @@ Flight::map('query', function($name, $default_value=NULL) {
     return $query_param;
   });
 
+  Flight::route('GET /', function(){
+    Flight::redirect('/docs');
+  });
 
   Flight::route('GET /swagger', function() {
     $openapi = @\OpenApi\scan(dirname(__FILE__)."/routes");
@@ -36,13 +38,13 @@ Flight::map('query', function($name, $default_value=NULL) {
   
   });
 
-  //redirect from api to docs
+  /* redirect from api to docs */
 Flight::route('GET /', function() {
   Flight::redirect('/docs');
 });
 
 
-/* register Services */
+/* register Business Logic layer services */
 Flight::register('userService','UserService');
 Flight::register('rentalService','RentalService');
 Flight::register('addressService','AddressService');
@@ -50,6 +52,9 @@ Flight::register('bookService','BookService');
 Flight::register('categoryService','CategoryService');
 
 /* include all routes */
+require_once dirname(__FILE__)."/routes/middleware.php";
+require_once dirname(__FILE__)."/../vendor/autoload.php";
+require_once dirname(__FILE__)."/../api/routes/users.php";
 require_once dirname(__FILE__)."/routes/users.php";
 require_once dirname(__FILE__)."/routes/rentals.php";
 require_once dirname(__FILE__)."/routes/address.php";
