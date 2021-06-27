@@ -36,7 +36,7 @@ class SMTPClient {
     public function send_user_recovery_token($user) {
         // Create a message
         $message = (new Swift_Message('Reset your password'))
-        ->setFrom(['faris@bekta.me' => 'A little book site'])
+        ->setFrom(['amina@mehic.me' => 'A little book site'])
         ->setTo([$user['email']])
         ->setBody('Here is the recovery token: '.$user['token']);
         ;
